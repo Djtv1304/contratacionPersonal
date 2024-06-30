@@ -3,15 +3,16 @@ package com.contratacion.contratacionPersonal.Document;
 import com.contratacion.contratacionPersonal.Document.ProfesorAttributes.Certificacion;
 import com.contratacion.contratacionPersonal.Document.ProfesorAttributes.Documento;
 import com.contratacion.contratacionPersonal.Document.ProfesorAttributes.Experiencia;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
-@Document(collection = "profesores")
+@Document(collection = "Profesores")
 public class Profesor {
 
     @Id
-    private String id;
+    private ObjectId id;
 
     private String nombre;
     private String correo;
@@ -27,11 +28,11 @@ public class Profesor {
     // Getters and Setters
 
     public String getId() {
-        return id;
+        return id != null ? id.toHexString() : null;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id != null ? new ObjectId(id) : null;
     }
 
     public String getNombre() {
