@@ -2,18 +2,16 @@ package com.contratacion.contratacionPersonal.Service;
 
 import com.contratacion.contratacionPersonal.Document.Vacante;
 import com.contratacion.contratacionPersonal.Repository.VacanteRepository;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class VacanteService{
 
-    VacanteRepository vacanteRepository;
+    private VacanteRepository vacanteRepository;
 
     @Autowired
     public VacanteService(VacanteRepository vacanteRepository) {

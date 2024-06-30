@@ -1,43 +1,43 @@
 package com.contratacion.contratacionPersonal.Document;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "aplicaciones")
+@Document(collection = "Aplicaciones")
 public class Aplicacion {
 
     @Id
-    private String id;
-
-    private String idProfesor;
-    private String idVacante;
+    private ObjectId id;
+    private ObjectId idProfesor;
+    private ObjectId idVacante;
     private String fechaAplicacion;
     private String estado;
 
     // Getters and Setters
 
     public String getId() {
-        return id;
+        return id != null ? id.toHexString() : null;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = id != null ? new ObjectId(id) : null;
     }
 
     public String getIdProfesor() {
-        return idProfesor;
+        return idProfesor != null ? idProfesor.toHexString() : null;
     }
 
     public void setIdProfesor(String idProfesor) {
-        this.idProfesor = idProfesor;
+        this.idProfesor = idProfesor != null ? new ObjectId(idProfesor) : null;
     }
 
     public String getIdVacante() {
-        return idVacante;
+        return idVacante != null ? idVacante.toHexString() : null;
     }
 
     public void setIdVacante(String idVacante) {
-        this.idVacante = idVacante;
+        this.idVacante = idVacante != null ? new ObjectId(idVacante) : null;
     }
 
     public String getFechaAplicacion() {

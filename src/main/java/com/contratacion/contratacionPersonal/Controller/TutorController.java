@@ -1,13 +1,10 @@
 package com.contratacion.contratacionPersonal.Controller;
 
 import com.contratacion.contratacionPersonal.Document.Tutor;
-import com.contratacion.contratacionPersonal.Document.Vacante;
 import com.contratacion.contratacionPersonal.Service.TutorService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,6 +45,35 @@ public class TutorController {
         ObjectId objectIdFromString = new ObjectId(idProfesor);
 
         return tutorService.findAllByIdProfesor(objectIdFromString);
+
+    }
+
+    @PutMapping("/tutorias/updateByUsuarioAndProfesor/{usuarioEstudiante}/{idProfesor}/{estado}")
+    public Tutor updateByUsuarioEstudianteAndIdProfesor(@PathVariable String usuarioEstudiante, @PathVariable String idProfesor, @PathVariable String estado){
+
+        ObjectId objectIdFromString = new ObjectId(idProfesor);
+
+        return tutorService.updateByUsuarioEstudianteAndIdProfesor(usuarioEstudiante, objectIdFromString, estado);
+
+    }
+
+    @PutMapping("/tutorias/updateTutoriaEstadoById/{idTutoria}/{estado}")
+    public Tutor updateTutoriaEstadoById(@PathVariable String idTutoria, @PathVariable String estado) {
+
+        ObjectId objectIdFromString = new ObjectId(idTutoria);
+
+        return tutorService.updateById(objectIdFromString, estado);
+
+    }
+
+    @PostMapping("/tutorias")
+    public Tutor saveTutoria(@RequestBody Tutor nuevaTutoria) {
+
+        if ( nuevaTutoria.getId() == null || nuevaTutoria.getId().isEmpty() ) {
+            nuevaTutoria.setId(new ObjectId().toHexString());
+        }
+
+        return tutorService.save(nuevaTutoria);
 
     }
 }

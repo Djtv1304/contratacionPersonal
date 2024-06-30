@@ -4,14 +4,12 @@ import com.contratacion.contratacionPersonal.Document.Vacante;
 import com.contratacion.contratacionPersonal.Service.VacanteService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional;
 
-@RestController()
+@RestController
 public class VacanteController {
 
     VacanteService vacanteService;
