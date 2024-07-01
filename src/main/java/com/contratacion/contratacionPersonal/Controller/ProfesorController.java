@@ -2,6 +2,7 @@ package com.contratacion.contratacionPersonal.Controller;
 
 import com.contratacion.contratacionPersonal.Document.Profesor;
 import com.contratacion.contratacionPersonal.Service.ProfesorService;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,10 @@ public class ProfesorController {
 
     @PostMapping("/profesores")
     public Profesor saveProfesor(@RequestBody Profesor profesorNuevo) {
+
+        if ( profesorNuevo.getId() == null || profesorNuevo.getId().isEmpty() ) {
+            profesorNuevo.setId(new ObjectId().toHexString());
+        }
 
         return profesorService.save(profesorNuevo);
 
