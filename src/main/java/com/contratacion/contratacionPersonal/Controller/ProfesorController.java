@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
+@RequestMapping("/contratacionPersonal")
 public class ProfesorController {
 
     ProfesorService profesorService;
@@ -71,17 +73,18 @@ public class ProfesorController {
     }
 
     @PutMapping("/profesores/updateEstadoByCorreo")
-    public Profesor updateEstadoProfesorByCorreo(@RequestBody String correoProfesor, @RequestBody String estadoNuevo) {
-
+    public Profesor updateEstadoProfesorByCorreo(@RequestBody Map<String, String> body) {
+        String correoProfesor = body.get("correoProfesor");
+        String estadoNuevo = body.get("estadoNuevo");
         return profesorService.updateEstadoByCorreo(correoProfesor, estadoNuevo);
-
     }
 
     @PutMapping("/profesores/updateEsTutorByCorreo")
-    public Profesor updateEsTutorProfesorByCorreo(@RequestBody String correoProfesor, @RequestBody Boolean esTutor) {
-
+    public Profesor updateEsTutorProfesorByCorreo(@RequestBody Map<String, Object> body) {
+        String correoProfesor = (String) body.get("correoProfesor");
+        Boolean esTutor = (Boolean) body.get("esTutor");
         return profesorService.updateEsTutorByCorreo(correoProfesor, esTutor);
-
     }
+
 
 }
